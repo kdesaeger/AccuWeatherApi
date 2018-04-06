@@ -1,5 +1,6 @@
 package com.krds.accuweatherapi;
 
+import com.krds.accuweatherapi.exceptions.UnauthorizedException;
 import com.krds.accuweatherapi.model.GeoPositionSearchResult;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.core.MediaType;

@@ -1,5 +1,6 @@
 package com.krds.accuweatherapi;
 
+import com.krds.accuweatherapi.exceptions.UnauthorizedException;
 import com.krds.accuweatherapi.model.CurrentConditions;
 import com.krds.accuweatherapi.model.CurrentConditionsList;
 import javax.ws.rs.NotAuthorizedException;

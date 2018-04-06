@@ -1,4 +1,4 @@
-package com.krds.accuweatherapi;
+package com.krds.accuweatherapi.exceptions;
 
 public class UnauthorizedException extends Exception {
 
