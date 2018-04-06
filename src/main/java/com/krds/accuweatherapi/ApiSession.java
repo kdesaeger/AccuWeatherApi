@@ -1,6 +1,11 @@
 package com.krds.accuweatherapi;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public final class ApiSession {
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(ApiSession.class);
     
     protected String URL;
     protected String apiKey;
@@ -17,14 +22,19 @@ public final class ApiSession {
     }
     
     public LocationApi getLocationApi() {
+        LOGGER.info(String.format("AccuWeather session info: %s", this.toString()));
         return new LocationApi(this);
     }
     
     public CurrentConditionsApi getCurrentConditionsApi(String locationKey) {
         return new CurrentConditionsApi(this, locationKey);
     }
+
+    @Override
+    public String toString() {
+        return "ApiSession{" + "URL=" + URL + ", apiKey=" + apiKey + ", connectTimeout=" + connectTimeout + ", readTimeout=" + readTimeout + ", language=" + language + '}';
+    }
     
-   
     public static class Builder {
         
         private String URL = "http://dataservice.accuweather.com";
