@@ -3,6 +3,7 @@ package com.krds.accuweatherapi;
 import com.krds.accuweatherapi.exceptions.ApiException;
 import com.krds.accuweatherapi.exceptions.UnauthorizedException;
 import com.krds.accuweatherapi.model.GeoPositionSearchResult;
+import java.util.Optional;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.core.MediaType;
@@ -32,7 +33,7 @@ public class LocationApi extends BaseApi {
      * @throws UnauthorizedException When the session API key is rejected
      * @throws ApiException In case of a problem with the AccuWeather Rest API call
      */
-    public GeoPositionSearchResult geoPosition(double lat, double lng) throws UnauthorizedException, ApiException {
+    public Optional<GeoPositionSearchResult> geoPosition(double lat, double lng) throws UnauthorizedException, ApiException {
         
         String url = String.format("%s/cities/geoposition/search.json?apikey=%s&language=%s&q=%s,%s", BASE_URL, this.session.apiKey, 
                 this.session.language, Double.toString(lat), Double.toString(lng));
@@ -40,7 +41,7 @@ public class LocationApi extends BaseApi {
         LOGGER.debug("Geolocation URL: {}", url);
       
         try {
-            return client.target(url).request(MediaType.APPLICATION_JSON).get(GeoPositionSearchResult.class);
+            return Optional.ofNullable(client.target(url).request(MediaType.APPLICATION_JSON).get(GeoPositionSearchResult.class));
         } catch (NotAuthorizedException e) {
             throw new UnauthorizedException(e);
         } catch (ClientErrorException e) {
