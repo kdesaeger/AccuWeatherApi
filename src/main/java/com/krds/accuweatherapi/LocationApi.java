@@ -24,7 +24,7 @@ public class LocationApi extends BaseApi {
         
         String url = BASE_URL + "&q=" + Double.toString(lat) + "," + Double.toString(lng);
         
-        LOGGER.debug(String.format("Geolocation URL: ", url));
+        LOGGER.debug("Geolocation URL: {}", url);
       
         try {
             return client.target(url).request(MediaType.APPLICATION_JSON).get(GeoPositionSearchResult.class);

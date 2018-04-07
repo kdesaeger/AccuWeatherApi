@@ -22,12 +22,20 @@ public final class ApiSession {
     }
     
     public LocationApi getLocationApi() {
-        LOGGER.info(String.format("AccuWeather session info: %s", this.toString()));
+        LOGGER.info("AccuWeather session info: {}", this.toString());
         return new LocationApi(this);
     }
     
     public CurrentConditionsApi getCurrentConditionsApi(String locationKey) {
         return new CurrentConditionsApi(this, locationKey);
+    }
+    
+    public IndicesApi getIndicesApi(String locationKey) {
+        return new IndicesApi(this, locationKey);
+    }
+    
+    public ForecastApi getForecastApi(String locationKey) {
+        return new ForecastApi(this, locationKey);
     }
 
     @Override

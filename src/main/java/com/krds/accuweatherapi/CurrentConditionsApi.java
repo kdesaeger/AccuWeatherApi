@@ -22,10 +22,13 @@ public class CurrentConditionsApi extends BaseApi {
     
     public Optional<CurrentConditions> get() throws UnauthorizedException {
       
-        LOGGER.debug(String.format("Current conditions URL: ", this.BASE_URL));
+        LOGGER.debug("Current conditions URL: {}", this.BASE_URL);
         
         try {            
             CurrentConditionsList results = client.target(this.BASE_URL).request(MediaType.APPLICATION_JSON).get(CurrentConditionsList.class);
+            if (results == null) {
+                return Optional.empty();
+            }
             return Optional.ofNullable(results.get(0));
         } catch (NotAuthorizedException e) {
             throw new UnauthorizedException(e);
