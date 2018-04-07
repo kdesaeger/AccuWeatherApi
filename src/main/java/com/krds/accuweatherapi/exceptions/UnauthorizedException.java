@@ -1,4 +1,4 @@
-package com.krds.accuweatherapi;
+package com.krds.accuweatherapi.exceptions;
 
 public class UnauthorizedException extends Exception {
 
@@ -17,9 +17,4 @@ public class UnauthorizedException extends Exception {
         super(cause);
     }
 
-    public UnauthorizedException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
-
-    
 }
