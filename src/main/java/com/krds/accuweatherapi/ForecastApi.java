@@ -24,9 +24,9 @@ public class ForecastApi extends BaseApi {
         this.locationKey = locationKey;
     }
     
-    public Optional<Forecast> getDailyXdays(int days) throws UnauthorizedException, ApiException {
+    public Optional<Forecast> getDailyXdays(Daily days) throws UnauthorizedException, ApiException {
         
-        String url = String.format("%s/daily/%dday/%s.json?details=true&apikey=%s&language=%s", this.BASE_URL, days, 
+        String url = String.format("%s/daily/%dday/%s.json?details=true&apikey=%s&language=%s", this.BASE_URL, days.getDays(), 
                 this.locationKey, this.session.apiKey, this.session.language);
         
         LOGGER.debug("getDailyXdays URL: {}", url);
