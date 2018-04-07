@@ -1,9 +1,9 @@
 package com.krds.accuweatherapi;
 
 /**
- * Period to use for forecasts
+ * Period to use for daily forecasts
  */
-public enum Period {
+public enum DayPeriod {
     
     DAYS_1(1), 
     DAYS_5(5),
@@ -12,7 +12,7 @@ public enum Period {
     
     private final int days;
 
-    private Period(int d) {
+    private DayPeriod(int d) {
         this.days = d;
     }
     
