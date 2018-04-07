@@ -4,9 +4,12 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import org.glassfish.jersey.client.ClientProperties;
 
+/**
+ * Abstract base class for Api classes
+ */
 public abstract class BaseApi {
 
-    protected ApiSession session;
+    protected final ApiSession session;
     
     protected final Client client = ClientBuilder.newClient();
     

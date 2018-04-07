@@ -10,6 +10,10 @@ import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Wrapper class around the AccuWeather Forecast API
+ * @see https://developer.accuweather.com/accuweather-forecast-api/apis
+ */
 public class ForecastApi extends BaseApi {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ForecastApi.class);
@@ -20,11 +24,19 @@ public class ForecastApi extends BaseApi {
     
     public ForecastApi(ApiSession session, String locationKey) {
         super(session);
-        this.BASE_URL = new StringBuilder(this.session.URL).append(BASE_URL).toString();
+        this.BASE_URL = this.session.URL + BASE_URL;
         this.locationKey = locationKey;
     }
     
-    public Optional<Forecast> getDailyXdays(Daily days) throws UnauthorizedException, ApiException {
+    /**
+     * Returns the forecast for the next x days
+     * @param days The Period
+     * @return The forecast
+     * @see com.krds.accuweatherapi.Period
+     * @throws UnauthorizedException When the session API key is rejected
+     * @throws ApiException In case of a problem with the AccuWeather Rest API call
+     */
+    public Optional<Forecast> getDailyXdays(Period days) throws UnauthorizedException, ApiException {
         
         String url = String.format("%s/daily/%dday/%s.json?details=true&apikey=%s&language=%s", this.BASE_URL, days.getDays(), 
                 this.locationKey, this.session.apiKey, this.session.language);
