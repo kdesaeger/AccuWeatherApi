@@ -29,7 +29,7 @@ if (geoLocation.isPresent()) {
 .... (fetch a Location Key) ....
 
 CurrentConditionsApi ccApi = session.getCurrentConditionsApi(<locationKey>);
-Optional<CurrentConditions> cc = ccApi.get();
+Optional<CurrentConditions> cc = ccApi.get(HourPeriod.HOURS_24);
 if (cc.isPresent()) {
    System.out.println("Current temperature is: " + cc.get().getTemperature().getMetric().getValue());
 }
